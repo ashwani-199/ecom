@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paytm Merchant Payment Page</title>
+
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #5e000e, #5e5e5e) ;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .btn-custom {
+            background-color: #ff0026;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 30px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn-custom:hover {
+            background-color: #ff8500;
+            transform: translateY(-5px);
+        }
+
+        .payment-info {
+            margin-top: 30px;
+        }
+
+        .payment-info p {
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .payment-info .icon {
+            font-size: 50px;
+            color: #ff0026;
+        }
+
+        @media(max-width:575px){
+            h1{font-size: 30px;}
+            body{padding: 10px;}
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h1>You're almost there!</h1>
+            <p>To proceed with your payment, please click the Pay Now button below.</p>
+
+            <!-- Razorpay Payment Form -->
+            <form action="https://checkout.razorpay.com/v1/checkout.js" method="post" name="paytm">
+                {% for key, value in context.items %}
+                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                {% endfor %}
+
+                <div class="payment-info">
+                    <i class="fas fa-credit-card icon"></i>
+                    <p>Securely pay using Razorpay</p>
+                    <button class="btn-custom" id="pay-btn">
+                        Pay Now
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Razorpay's Javascript code -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            key: "{{ razorpay_merchant_key }}", // Enter the Key ID generated from the Dashboard
+            amount: "{{ razorpay_amount }}", // Amount in currency subunits (e.g., 50000 paise)
+            currency: "{{ currency }}", // Currency
+            name: "Dj Razorpay", // Your/store name
+            order_id: "{{ razorpay_order_id }}", // Pass the `id` obtained in the response of Step 1
+            callback_url: "{{ callback_url }}", // Callback URL after payment
+        };
+
+        var rzp1 = new Razorpay(options);
+
+        document.getElementById("pay-btn").onclick = function (e) {
+            rzp1.open();
+            e.preventDefault();
+        };
+    </script>
+
+    <!-- Bootstrap JS, jQuery, and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

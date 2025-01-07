@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Profile Page{% endblock title %}
+{% block body %}
+<section id="portfolio" class="portfolio">
+    <div class="container">
+  
+
+<h2>My Profile Page</h2>
+<!-- <table class="table table-success table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Products</th>
+            <th scope="col">Amount Paid</th>
+            <th scope="col">Payment Status</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Delivery Status</th>
+            <th scope="col">Deliverd</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in items %}
+
+        <tr>
+            <th scope="row">{{i.oid}}</th>
+            <td>{{i.name}}</td>
+            <td>{{i.items_json}}</td>
+            <td>{{i.amount}}</td>
+            <td>{{i.paymentstatus}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.phone}}</td>
+            <td>{{i.delivery_status}}</td>
+            <td>{{i.deliverd}}</td>
+        </tr>
+        {% endfor %}
+
+
+
+    </tbody>
+</table> -->
+    <div class="table-responsive">
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Products</th>
+                    <th scope="col">Amount Paid</th>
+                    <th scope="col">Payment Status</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Delivery Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in orders_with_updates %}
+                <tr>
+                    <th scope="row">{{ item.order.oid }}</th>
+                    <td>{{ item.order.name }}</td>
+                    <td>{{ item.order.items_json }}</td>
+                    <td>{{ item.order.amount }}</td>
+                    <td>{{ item.order.payment_status|default:"Not Paid" }}</td>
+                    <td>{{ item.order.address }}</td>
+                    <td>{{ item.order.phone }}</td>
+                    <td>{{ item.delivery_status }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8">No orders found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</section>
+{% endblock body %}
