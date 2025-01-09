@@ -19,9 +19,9 @@ Welcome to the Ecommerce Website project! This repository contains a fully funct
 
 ## Technologies Used
 
-- **Frontend:** HTML, CSS, JavaScript, React (or Angular/Vue)
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB (or MySQL/PostgreSQL)
-- **Payment Gateways:** Stripe, PayPal (or others)
+- **Frontend:** HTML, CSS, JavaScript.
+- **Backend:** Python, Django
+- **Database:** Mysql and PostgreSQL 
+- **Payment Gateways:** RazorPay
 - **Authentication:** JWT (JSON Web Tokens)
 - **Deployment:** Heroku, Vercel, or any cloud service
