@@ -6,12 +6,6 @@ Welcome to the Ecommerce Website project! This repository contains a fully funct
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Payment Integrations](#payment-integrations)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Features
 
